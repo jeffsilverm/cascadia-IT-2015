@@ -1,0 +1,58 @@
+Let's start with some simple things.
+TCP 3 way handshake.
+simple_http.pcap
+packets 1-3 hand shake
+packet 4 HTTP GET
+packet 5 ACK
+Packet 6 response
+Packets 7-10 normal shutdown.
+Packets 50-57 keep alive
+
+TCP 3 way handshake with IPv6
+SYN, SYN-ACK, ACK handshake.  4 way shutdown.
+
+IPv6 neighbor discovery protocol RFC 4861, 5942, 6980, 7048
+ip6-ndp-05.cap
+fe80 is link local address (look at how the LS 32 bits come from MAC)
+ff02::16 is link local
+ff02::2 is router solicitation, ff02::1 is router advertisement
+
+ARP working properly arp_success.pcap
+ARP failing  arp_failure.pcap
+
+
+
+
+DNS  dns.pcap
+packet 79 non-existant-domain-name.com packet 80 response 26 msec later
+Where are all those queries to daisy.ubuntu.com coming from? whoopsie see Ubuntu launchpad bug 991481
+dns2.pcap
+search for string "google".  Find query 0x9b11  look at packet 14. 
+
+Lossy network
+dropped_TCP_packets.pcap.pcpng
+40% packet loss
+I don't know the client sent a RESET packet in packet 204.
+
+
+Queen_Anne_Starbucks.pcapng. 69088 packets in 266 seconds = 259 packets/sec.
+
+How many machines are present?
+Statistics => endpoint list => Ethernet
+40 unique MAC addresses
+388 unique IP addresses.  Why the desparity?
+
+TCP Resets
+display filter tcp.flags.reset==1
+SSL will send a TCP RESET instead of a FIN packet, I don't know why.
+tcp.flags.reset==1 and tcp.srcport == 80
+Pick packet 59711.
+Pick packet 59658.
+
+
+15th_ave_e_starbucks.pcapng
+packet 9 Trying to reach port 443 and failing
+Try filter tcp.flags.syn==1
+Look at packet 1108 which is a TCP connection over IPv6.  Right click and follow TCP stream.  Why is packet 1544 IPv4 but still in this stream?
+
+
